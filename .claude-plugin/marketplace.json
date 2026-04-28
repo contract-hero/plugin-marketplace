@@ -46,6 +46,27 @@
         "bridge",
         "agent"
       ]
+    },
+    {
+      "name": "code-forge",
+      "description": "Multi-agent build system with TDD-as-phase, script-coordinated parallel review, best-of-N implementer, and forge-guard hook discipline.",
+      "source": {
+        "source": "github",
+        "repo": "alilloig/code-forge"
+      },
+      "homepage": "https://github.com/alilloig/code-forge",
+      "repository": "https://github.com/alilloig/code-forge",
+      "license": "MIT",
+      "category": "development",
+      "keywords": [
+        "code-forge",
+        "forge",
+        "multi-agent",
+        "codex",
+        "orchestration",
+        "tdd",
+        "best-of-n"
+      ]
     }
   ]
 }
