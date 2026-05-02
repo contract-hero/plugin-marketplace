@@ -67,6 +67,27 @@
         "tdd",
         "best-of-n"
       ]
+    },
+    {
+      "name": "sui-deepbook-course",
+      "description": "Interactive Sui DeepBook course for advanced DeFi developers — guided lessons driven from Claude Code via an MCP server, with preflight diagnostics and an escalating help ladder.",
+      "source": {
+        "source": "github",
+        "repo": "alilloig/sui-mcp-course"
+      },
+      "homepage": "https://github.com/alilloig/sui-mcp-course",
+      "repository": "https://github.com/alilloig/sui-mcp-course",
+      "license": "MIT",
+      "category": "education",
+      "keywords": [
+        "sui",
+        "deepbook",
+        "defi",
+        "course",
+        "tutorial",
+        "mcp",
+        "interactive-learning"
+      ]
     }
   ]
 }
