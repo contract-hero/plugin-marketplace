@@ -64,6 +64,25 @@
       ]
     },
     {
+      "name": "agentic-community-college",
+      "description": "Claude Code learning framework that runs reference-seeded coding lessons through MCP. Ships course-engine + course-conductor + course-creator + lesson-creator skills and a declarative probe runtime. Pair with any acc-content plugin (e.g. acc-deepbook-course) to teach a domain.",
+      "source": { "source": "github", "repo": "alilloig/agentic-community-college" },
+      "homepage": "https://github.com/alilloig/agentic-community-college",
+      "repository": "https://github.com/alilloig/agentic-community-college",
+      "license": "MIT",
+      "category": "education",
+      "keywords": [
+        "learning",
+        "course",
+        "lesson",
+        "tutorial",
+        "mcp",
+        "claude-code",
+        "framework",
+        "agentic-community-college"
+      ]
+    },
+    {
       "name": "acc-deepbook-course",
       "description": "DeepBook content for the Agentic Community College (ACC) framework — bundles hands-on lessons that walk learners through building Sui DeepBook integrations end-to-end. Requires the agentic-community-college plugin to run.",
       "source": { "source": "github", "repo": "alilloig/acc-deepbook-course" },
