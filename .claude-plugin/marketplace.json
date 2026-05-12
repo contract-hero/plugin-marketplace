@@ -40,12 +40,7 @@
       "repository": "https://github.com/alilloig/codex-bridge",
       "license": "Apache-2.0",
       "category": "development",
-      "keywords": [
-        "codex",
-        "openai",
-        "bridge",
-        "agent"
-      ]
+      "keywords": ["codex", "openai", "bridge", "agent"]
     },
     {
       "name": "code-forge",
@@ -69,14 +64,11 @@
       ]
     },
     {
-      "name": "sui-deepbook-course",
-      "description": "Interactive Sui DeepBook course for advanced DeFi developers — guided lessons driven from Claude Code via an MCP server, with preflight diagnostics and an escalating help ladder.",
-      "source": {
-        "source": "github",
-        "repo": "alilloig/sui-mcp-course"
-      },
-      "homepage": "https://github.com/alilloig/sui-mcp-course",
-      "repository": "https://github.com/alilloig/sui-mcp-course",
+      "name": "acc-deepbook-course",
+      "description": "DeepBook content for the Agentic Community College (ACC) framework — bundles hands-on lessons that walk learners through building Sui DeepBook integrations end-to-end. Requires the agentic-community-college plugin to run.",
+      "source": { "source": "github", "repo": "alilloig/acc-deepbook-course" },
+      "homepage": "https://github.com/alilloig/acc-deepbook-course",
+      "repository": "https://github.com/alilloig/acc-deepbook-course",
       "license": "MIT",
       "category": "education",
       "keywords": [
@@ -84,9 +76,9 @@
         "deepbook",
         "defi",
         "course",
-        "tutorial",
-        "mcp",
-        "interactive-learning"
+        "lesson",
+        "acc-content",
+        "agentic-community-college"
       ]
     }
   ]
