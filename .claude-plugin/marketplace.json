@@ -99,6 +99,24 @@
         "acc-content",
         "agentic-community-college"
       ]
+    },
+    {
+      "name": "toolkit",
+      "description": "Self-contained HTML deliverable toolkit — bundles html-artifact (one-off visual deliverables), publish-html (turn a local .html into a shareable URL), for-dummies (auto-derived project intros), and move-call-chains (HTML call-chain diagrams for Sui Move packages). Used by agentic-community-college's claude-plugin-enabled probe.",
+      "source": { "source": "github", "repo": "alilloig/toolkit" },
+      "homepage": "https://github.com/alilloig/toolkit",
+      "repository": "https://github.com/alilloig/toolkit",
+      "license": "MIT",
+      "category": "development",
+      "keywords": [
+        "html",
+        "artifact",
+        "documentation",
+        "publish",
+        "github-pages",
+        "move",
+        "diagrams"
+      ]
     }
   ]
 }
