@@ -121,7 +121,7 @@
     {
       "name": "acc-evm-wal",
       "description": "ACC content plugin teaching the basics of Walrus decentralized storage and how to integrate it with Solidity smart contracts. Ships one short Foundry-based lesson (offline-runnable) that walks learners through building a WalrusAnchor contract end-to-end. Requires the agentic-community-college plugin to run.",
-      "source": { "source": "github", "repo": "contract-hero/acc-evm-wal" },
+      "source": { "source": "github", "repo": "contract-hero/acc-evm-wal", "commit": "02d1228acf95139e06be851e756f8f4fcaf7e087", "sha": "02d1228acf95139e06be851e756f8f4fcaf7e087" },
       "homepage": "https://github.com/contract-hero/acc-evm-wal",
       "repository": "https://github.com/contract-hero/acc-evm-wal",
       "license": "MIT",
