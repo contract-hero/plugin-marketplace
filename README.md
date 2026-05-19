@@ -10,7 +10,7 @@ In a Claude Code session:
 /plugin marketplace add contract-hero/plugin-marketplace
 /plugin install sui-pilot@contract-hero
 /plugin install codex-bridge@contract-hero
-/plugin install sui-deepbook-course@contract-hero
+/plugin install acc-deepbook-course@contract-hero
 ```
 
 Restart Claude Code after install so MCP servers spawn correctly.
@@ -21,10 +21,10 @@ You can also browse and install via the `/plugin` UI once the marketplace is add
 
 | Name | Description | Source | Docs |
 |---|---|---|---|
-| [`sui-pilot`](https://github.com/alilloig/sui-pilot) | Sui Move development plugin with LSP integration, bundled docs (Sui, Walrus, Seal, TS SDK), and code quality / review skills. | `alilloig/sui-pilot` | https://github.com/alilloig/sui-pilot |
-| [`codex-bridge`](https://github.com/alilloig/codex-bridge) | Bridge to OpenAI Codex CLI — `/codex` for direct calls and `/claudex` for multi-round Claude↔Codex prompt refinement. | `alilloig/codex-bridge` | https://github.com/alilloig/codex-bridge |
-| [`code-forge`](https://github.com/alilloig/code-forge) | Multi-agent build system with TDD-as-phase, parallel review, best-of-N implementer, and forge-guard hook discipline. | `alilloig/code-forge` | https://github.com/alilloig/code-forge |
-| [`sui-deepbook-course`](https://github.com/alilloig/sui-mcp-course) | Interactive Sui DeepBook course for advanced DeFi developers — `/sui-deepbook-course:start` opens a guided lesson driven by an MCP server, with preflight diagnostics and an escalating help ladder. | `alilloig/sui-mcp-course` | https://github.com/alilloig/sui-mcp-course |
+| [`sui-pilot`](https://github.com/contract-hero/sui-pilot) | Sui Move development plugin with LSP integration, bundled docs (Sui, Walrus, Seal, TS SDK), and code quality / review skills. | `contract-hero/sui-pilot` | https://github.com/contract-hero/sui-pilot |
+| [`codex-bridge`](https://github.com/contract-hero/codex-bridge) | Bridge to OpenAI Codex CLI — `/codex` for direct calls and `/claudex` for multi-round Claude↔Codex prompt refinement. | `contract-hero/codex-bridge` | https://github.com/contract-hero/codex-bridge |
+| [`code-forge`](https://github.com/contract-hero/code-forge) | Multi-agent build system with TDD-as-phase, parallel review, best-of-N implementer, and forge-guard hook discipline. | `contract-hero/code-forge` | https://github.com/contract-hero/code-forge |
+| [`acc-deepbook-course`](https://github.com/contract-hero/acc-deepbook-course) | Interactive Sui DeepBook course for advanced DeFi developers — `/acc-deepbook-course:start` opens a guided lesson driven by an MCP server, with preflight diagnostics and an escalating help ladder. | `contract-hero/acc-deepbook-course` | https://github.com/contract-hero/acc-deepbook-course |
 
 ## What this repo contains
 
