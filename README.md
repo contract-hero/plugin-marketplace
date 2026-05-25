@@ -21,7 +21,7 @@ You can also browse and install via the `/plugin` UI once the marketplace is add
 
 | Name | Description | Source | Docs |
 |---|---|---|---|
-| [`sui-pilot`](https://github.com/contract-hero/sui-pilot) | Sui Move development plugin with LSP integration, bundled docs (Sui, Walrus, Seal, TS SDK), and code quality / review skills. | `contract-hero/sui-pilot` | https://github.com/contract-hero/sui-pilot |
+| [`sui-pilot`](https://github.com/contract-hero/sui-pilot) | Sui Move development plugin — 753 bundled docs, Move LSP, Sui Prover formal verification, and five specialized skills. | `contract-hero/sui-pilot` | https://contract-hero.github.io/sui-pilot/ |
 | [`codex-bridge`](https://github.com/contract-hero/codex-bridge) | Bridge to OpenAI Codex CLI — `/codex` for direct calls and `/claudex` for multi-round Claude↔Codex prompt refinement. | `contract-hero/codex-bridge` | https://github.com/contract-hero/codex-bridge |
 | [`code-forge`](https://github.com/contract-hero/code-forge) | Multi-agent build system with TDD-as-phase, parallel review, best-of-N implementer, and forge-guard hook discipline. | `contract-hero/code-forge` | https://github.com/contract-hero/code-forge |
 | [`acc-deepbook-course`](https://github.com/contract-hero/acc-deepbook-course) | Interactive Sui DeepBook course for advanced DeFi developers — `/acc-deepbook-course:start` opens a guided lesson driven by an MCP server, with preflight diagnostics and an escalating help ladder. | `contract-hero/acc-deepbook-course` | https://github.com/contract-hero/acc-deepbook-course |
