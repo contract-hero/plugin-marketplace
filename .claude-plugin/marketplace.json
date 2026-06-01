@@ -5,12 +5,12 @@
     "email": "alilloig@gmail.com"
   },
   "metadata": {
-    "description": "Claude Code plugins maintained by Contract Hero — Sui Move tooling and developer-experience extensions."
+    "description": "Claude Code plugins maintained by Contract Hero \u2014 Sui Move tooling and developer-experience extensions."
   },
   "plugins": [
     {
       "name": "sui-pilot",
-      "description": "Sui Move development plugin — 753 bundled docs, Move LSP integration, Sui Prover formal verification, and five specialized skills (code quality, security review, math safety, formal specs, verification).",
+      "description": "Sui Move development plugin \u2014 753 bundled docs, Move LSP integration, Sui Prover formal verification, and five specialized skills (code quality, security review, math safety, formal specs, verification).",
       "source": {
         "source": "github",
         "repo": "contract-hero/sui-pilot"
@@ -33,7 +33,7 @@
     },
     {
       "name": "codex-bridge",
-      "description": "Bridge to OpenAI Codex CLI — /codex execution and /claudex multi-round prompt refinement.",
+      "description": "Bridge to OpenAI Codex CLI \u2014 /codex execution and /claudex multi-round prompt refinement.",
       "source": {
         "source": "github",
         "repo": "contract-hero/codex-bridge"
@@ -42,7 +42,12 @@
       "repository": "https://github.com/contract-hero/codex-bridge",
       "license": "Apache-2.0",
       "category": "development",
-      "keywords": ["codex", "openai", "bridge", "agent"]
+      "keywords": [
+        "codex",
+        "openai",
+        "bridge",
+        "agent"
+      ]
     },
     {
       "name": "code-forge",
@@ -68,7 +73,10 @@
     {
       "name": "agentic-community-college",
       "description": "Claude Code learning framework that runs reference-seeded coding lessons through MCP. Ships course-engine + course-conductor + course-creator + lesson-creator skills and a declarative probe runtime. Pair with any acc-content plugin (e.g. acc-deepbook-course) to teach a domain.",
-      "source": { "source": "github", "repo": "contract-hero/agentic-community-college" },
+      "source": {
+        "source": "github",
+        "repo": "contract-hero/agentic-community-college"
+      },
       "homepage": "https://github.com/contract-hero/agentic-community-college",
       "repository": "https://github.com/contract-hero/agentic-community-college",
       "license": "MIT",
@@ -86,8 +94,11 @@
     },
     {
       "name": "acc-deepbook-course",
-      "description": "DeepBook content for the Agentic Community College (ACC) framework — bundles hands-on lessons that walk learners through building Sui DeepBook integrations end-to-end. Requires the agentic-community-college plugin to run.",
-      "source": { "source": "github", "repo": "contract-hero/acc-deepbook-course" },
+      "description": "DeepBook content for the Agentic Community College (ACC) framework \u2014 bundles hands-on lessons that walk learners through building Sui DeepBook integrations end-to-end. Requires the agentic-community-college plugin to run.",
+      "source": {
+        "source": "github",
+        "repo": "contract-hero/acc-deepbook-course"
+      },
       "homepage": "https://github.com/contract-hero/acc-deepbook-course",
       "repository": "https://github.com/contract-hero/acc-deepbook-course",
       "license": "MIT",
@@ -104,8 +115,11 @@
     },
     {
       "name": "toolkit",
-      "description": "Self-contained HTML deliverable toolkit — bundles html-artifact (one-off visual deliverables), publish-html (turn a local .html into a shareable URL), for-dummies (auto-derived project intros), and move-call-chains (HTML call-chain diagrams for Sui Move packages). Used by agentic-community-college's claude-plugin-enabled probe.",
-      "source": { "source": "github", "repo": "contract-hero/toolkit" },
+      "description": "Self-contained HTML deliverable toolkit \u2014 bundles html-artifact (one-off visual deliverables), publish-html (turn a local .html into a shareable URL), for-dummies (auto-derived project intros), and move-call-chains (HTML call-chain diagrams for Sui Move packages). Used by agentic-community-college's claude-plugin-enabled probe.",
+      "source": {
+        "source": "github",
+        "repo": "contract-hero/toolkit"
+      },
       "homepage": "https://github.com/contract-hero/toolkit",
       "repository": "https://github.com/contract-hero/toolkit",
       "license": "MIT",
@@ -123,7 +137,12 @@
     {
       "name": "acc-evm-wal",
       "description": "ACC content plugin teaching the basics of Walrus decentralized storage and how to integrate it with Solidity smart contracts. Ships one short Foundry-based lesson (offline-runnable) that walks learners through building a WalrusAnchor contract end-to-end. Requires the agentic-community-college plugin to run.",
-      "source": { "source": "github", "repo": "contract-hero/acc-evm-wal", "commit": "02d1228acf95139e06be851e756f8f4fcaf7e087", "sha": "02d1228acf95139e06be851e756f8f4fcaf7e087" },
+      "source": {
+        "source": "github",
+        "repo": "contract-hero/acc-evm-wal",
+        "commit": "02d1228acf95139e06be851e756f8f4fcaf7e087",
+        "sha": "02d1228acf95139e06be851e756f8f4fcaf7e087"
+      },
       "homepage": "https://github.com/contract-hero/acc-evm-wal",
       "repository": "https://github.com/contract-hero/acc-evm-wal",
       "license": "MIT",
@@ -138,6 +157,28 @@
         "lesson",
         "acc-content",
         "agentic-community-college"
+      ]
+    },
+    {
+      "name": "sui-agent-tank",
+      "description": "Guided evaluation harness \u2014 grade a Sui-stack context bundle (a skill folder or a Claude Code plugin) by GitHub URL. /tank clones it, auto-detects the kind, runs a containerized agent through compile/test gates + Move anti-pattern traps + a cross-model judge, and reports.",
+      "source": {
+        "source": "github",
+        "repo": "contract-hero/sui-agent-tank"
+      },
+      "homepage": "https://github.com/contract-hero/sui-agent-tank",
+      "repository": "https://github.com/contract-hero/sui-agent-tank",
+      "license": "MIT",
+      "category": "development",
+      "keywords": [
+        "sui",
+        "move",
+        "eval",
+        "skills",
+        "plugin",
+        "agentic",
+        "grading",
+        "tank"
       ]
     }
   ]
