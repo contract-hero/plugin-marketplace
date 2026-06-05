@@ -2,6 +2,8 @@
 
 A Claude Code plugin marketplace catalog for plugins maintained by [Contract Hero](https://github.com/contract-hero) and the wider community of contributors. It currently advertises tooling for Sui Move development and developer-experience extensions.
 
+**👉 [Browse the marketplace site](https://contract-hero.github.io/plugin-marketplace/)**
+
 ## Install
 
 In a Claude Code session:
