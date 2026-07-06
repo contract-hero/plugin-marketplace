@@ -1,0 +1,502 @@
+[
+  {
+    "id": "task-01-module-syntax",
+    "title": "Convert legacy module syntax to Move 2024 file-level form",
+    "fixturePath": "fixtures/legacy-module",
+    "prompt": "Update sources/legacy.move to use the Move 2024 file-level module syntax. Do not change function bodies; only change the module declaration form.",
+    "passCriteria": {
+      "file": "sources/legacy.move",
+      "containsString": "module example::demo;",
+      "doesNotContainString": "module example::demo {"
+    }
+  },
+  {
+    "id": "task-02-sdk-2-client",
+    "title": "Migrate to @mysten/sui v2 JSON-RPC client",
+    "fixturePath": "fixtures/sdk-1-client",
+    "prompt": "Update src/index.ts to use the @mysten/sui v2 SDK. The 1.x SuiClient is deprecated; switch to SuiJsonRpcClient from @mysten/sui/jsonRpc and pass the now-required network parameter (mainnet).",
+    "passCriteria": {
+      "file": "src/index.ts",
+      "containsString": "@mysten/sui/jsonRpc",
+      "doesNotContainString": "@mysten/sui/client"
+    }
+  },
+  {
+    "id": "task-03-otw",
+    "title": "Implement the one-time-witness pattern for a currency module",
+    "fixturePath": "fixtures/otw-coin",
+    "prompt": "Implement the one-time-witness (OTW) pattern in sources/demo.move so the coin::create_currency call in init() compiles. The OTW struct must match the module name uppercased (DEMO) and have only the drop ability. Pass the OTW by value into init.",
+    "passCriteria": {
+      "file": "sources/demo.move",
+      "containsString": "struct DEMO has drop",
+      "alsoContainsRegex": "coin::create_currency(<[^>]+>)?\\(\\s*otw\\b"
+    }
+  },
+  {
+    "id": "task-04-vector-method-syntax",
+    "title": "Use Move 2024 method-call syntax for vector ops",
+    "fixturePath": "fixtures/vector-method-syntax",
+    "prompt": "Update sources/lib.move to use Move 2024 method-call syntax (`v.push_back(x)`, `v.pop_back()`) instead of the function-call form. Behaviour must be identical.",
+    "passCriteria": {
+      "file": "sources/lib.move",
+      "containsString": ".push_back(",
+      "doesNotContainString": "vector::push_back("
+    }
+  },
+  {
+    "id": "task-05-do-macro",
+    "title": "Replace a while loop with the vector::do! macro",
+    "fixturePath": "fixtures/do-macro",
+    "prompt": "Rewrite the summation loop in sources/lib.move using the Move 2024 `vector::do!` macro instead of a `while` loop.",
+    "passCriteria": {
+      "file": "sources/lib.move",
+      "containsString": "do!(",
+      "doesNotContainString": "while ("
+    }
+  },
+  {
+    "id": "task-06-dynamic-object-field",
+    "title": "Attach and read a dynamic object field on a Parent",
+    "fixturePath": "fixtures/dynamic-object-field",
+    "prompt": "Add two public functions to sources/lib.move: `add_child(parent: &mut Parent, key: u64, child: Child)` using `dynamic_object_field::add`, and `borrow_child(parent: &Parent, key: u64): &Child` using `dynamic_object_field::borrow`. Define a simple `Child` struct with `key + store` abilities.",
+    "passCriteria": {
+      "file": "sources/lib.move",
+      "containsString": "dynamic_object_field::add(",
+      "alsoContainsString": "dynamic_object_field::borrow("
+    }
+  },
+  {
+    "id": "task-07-implicit-framework",
+    "title": "Drop explicit Sui framework dep in favour of implicit (1.45+)",
+    "fixturePath": "fixtures/implicit-framework",
+    "prompt": "Update Move.toml to use Sui 1.45+ implicit framework dependencies — remove the explicit `Sui = { ... }` line entirely. Edition stays at 2024.",
+    "passCriteria": {
+      "file": "Move.toml",
+      "containsString": "edition = \"2024\"",
+      "doesNotContainString": "Sui = {"
+    }
+  },
+  {
+    "id": "task-08-hot-potato",
+    "title": "Apply the hot-potato pattern to a Receipt struct",
+    "fixturePath": "fixtures/hot-potato",
+    "prompt": "Make the trade flow safe: ensure `Receipt` has NO abilities (hot-potato pattern), and add a `complete_trade(receipt: Receipt, ...)` function that destroys the receipt by-value via destructuring.",
+    "passCriteria": {
+      "file": "sources/trade.move",
+      "containsString": "struct Receipt",
+      "doesNotContainString": "Receipt has",
+      "alsoContainsString": "complete_trade("
+    }
+  },
+  {
+    "id": "task-09-transfer-policy-royalty",
+    "title": "Create a TransferPolicy with a 5% royalty rule",
+    "fixturePath": "fixtures/transfer-policy-royalty",
+    "prompt": "Add a function `init_policy(publisher: &Publisher, ctx: &mut TxContext)` that creates a `TransferPolicy<MyNft>` via `transfer_policy::new`, attaches a 5% royalty rule, and shares the policy.",
+    "passCriteria": {
+      "file": "sources/nft.move",
+      "containsString": "transfer_policy::new",
+      "alsoContainsString": "royalty_rule::add"
+    }
+  },
+  {
+    "id": "task-10-test-scenario",
+    "title": "Write a multi-actor test_scenario test for a shared Pool",
+    "fixturePath": "fixtures/test-scenario",
+    "prompt": "Write a `tests/pool_tests.move` with a `#[test]` function that uses `test_scenario` to: create the shared Pool, have actor ALICE deposit, then have actor BOB withdraw concurrently. Use `test_scenario::next_tx` between actors and `test_scenario::take_shared`.",
+    "passCriteria": {
+      "file": "tests/pool_tests.move",
+      "containsString": "next_tx(",
+      "alsoContainsString": "take_shared<"
+    }
+  },
+  {
+    "id": "task-11-derived-object",
+    "title": "Mint a Child via sui::derived_object",
+    "fixturePath": "fixtures/derived-object",
+    "prompt": "Add a `derive_child(parent: &mut Parent, index: u64, ctx: &mut TxContext)` function that uses `sui::derived_object` to create a `Child` with a deterministic UID derived from the parent's UID and the index.",
+    "passCriteria": {
+      "file": "sources/lib.move",
+      "containsString": "sui::derived_object",
+      "alsoContainsString": "derived_object::claim"
+    }
+  },
+  {
+    "id": "task-12-randomness-raffle",
+    "title": "Pick a random raffle winner with sui::random",
+    "fixturePath": "fixtures/randomness-raffle",
+    "prompt": "Implement a `draw_winner(raffle: &mut Raffle, r: &Random, ctx: &mut TxContext)` function that uses `sui::random::Random` to pick a random index in the participants vector. Use `random::new_generator(r, ctx)` and `random_generator::generate_u64_in_range`.",
+    "passCriteria": {
+      "file": "sources/raffle.move",
+      "containsRegex": "(random::|\\b)new_generator\\s*\\(",
+      "alsoContainsString": "generate_u64_in_range("
+    }
+  },
+  {
+    "id": "task-13-walrus-blob-anchor",
+    "title": "Publish a blob to Walrus and anchor its id on Sui",
+    "fixturePath": "fixtures/walrus-blob-anchor",
+    "prompt": "In src/index.ts, implement `publishAndAnchor(blob: Uint8Array): Promise<{ blobId: string; suiObjectId: string }>` that writes the blob to Walrus via `WalrusClient.writeBlob`, then submits a Sui transaction creating a `BlobCommitment` object containing the returned blobId. Use the v2 SDK shape.",
+    "passCriteria": {
+      "file": "src/index.ts",
+      "containsString": "writeBlob(",
+      "alsoContainsString": "tx.moveCall("
+    }
+  },
+  {
+    "id": "task-14-seal-policy-encrypt",
+    "title": "Encrypt a secret with a Seal capability-gated policy",
+    "fixturePath": "fixtures/seal-policy-encrypt",
+    "prompt": "In src/index.ts, implement `encryptForCapability(secret: Uint8Array, capabilityId: string): Promise<Uint8Array>` that uses `@mysten/seal`'s SealClient to encrypt the secret with a capability-gated decryption policy referencing the given capabilityId.",
+    "passCriteria": {
+      "file": "src/index.ts",
+      "containsString": "SealClient",
+      "alsoContainsString": ".encrypt("
+    }
+  },
+  {
+    "id": "task-15-enum-match",
+    "title": "Refactor a u8-tagged state machine to a Move 2024 enum + match",
+    "fixturePath": "fixtures/enum-match",
+    "prompt": "Refactor sources/state.move to replace the `u8` tag with a Move 2024 `enum State` (variants `Idle`, `Running`, `Done`), and rewrite `step` to use exhaustive `match` over the variants.",
+    "passCriteria": {
+      "file": "sources/state.move",
+      "containsString": "enum State",
+      "alsoContainsString": "match (",
+      "doesNotContainString": "u8"
+    }
+  },
+  {
+    "id": "task-16-rename-cap-across-modules",
+    "title": "Rename AdminCap to OperatorCap across three modules",
+    "fixturePath": "fixtures/task-16-rename-cap",
+    "prompt": "Rename the capability struct `AdminCap` to `OperatorCap` everywhere it is referenced in this package: its definition in `sources/auth.move`, all uses in `sources/pool.move`, and the test in `tests/pool_tests.move`. Update every type annotation, every use-statement, and every constructor/destructor occurrence. The package must still compile after the rename.",
+    "category": "multi-file",
+    "passCriteria": {
+      "file": "sources/auth.move",
+      "containsString": "struct OperatorCap",
+      "doesNotContainString": "AdminCap",
+      "additionalFiles": [
+        { "file": "sources/pool.move", "containsString": "OperatorCap" },
+        { "file": "sources/pool.move", "containsString": "OperatorCap", "doesNotContainString": "AdminCap" },
+        { "file": "tests/pool_tests.move", "doesNotContainString": "AdminCap" }
+      ],
+      "compileAfter": true
+    }
+  },
+  {
+    "id": "task-17-split-monolith",
+    "title": "Split a monolithic protocol module into state + entry",
+    "fixturePath": "fixtures/task-17-split-monolith",
+    "prompt": "Split `sources/protocol.move` into two files in the same package: `sources/state.move` (struct definitions + view functions) and `sources/entry.move` (the public mutators `new`, `share`, `deposit`, `withdraw`). Preserve the public API and types unchanged. Update use-statements as needed. The package must compile.",
+    "category": "multi-file",
+    "passCriteria": {
+      "file": "sources/state.move",
+      "containsString": "public struct Pool",
+      "additionalFiles": [
+        { "file": "sources/entry.move", "containsString": "public fun deposit" },
+        { "file": "sources/entry.move", "containsString": "public fun withdraw" }
+      ],
+      "compileAfter": true
+    }
+  },
+  {
+    "id": "task-18-sdk-2-multifile",
+    "title": "Migrate a 3-file TS dApp from @mysten/sui 1.x to 2.0",
+    "fixturePath": "fixtures/task-18-sdk-2-multifile",
+    "prompt": "Migrate this dApp from the `@mysten/sui` 1.x API to the 2.0 API across all three files. Specifically: replace the 1.x `SuiClient` from `@mysten/sui/client` with the 2.0 `SuiJsonRpcClient` (from `@mysten/sui/jsonRpc`) including the required `network` parameter; replace `TransactionBlock` from `@mysten/sui/transactions` with the 2.0 `Transaction` type; update every call site. Read `.ts-sdk-docs/sui/migrations/sui-2.0/index.mdx` first.",
+    "category": "multi-file",
+    "passCriteria": {
+      "file": "src/client.ts",
+      "containsString": "@mysten/sui/jsonRpc",
+      "doesNotContainString": "@mysten/sui/client",
+      "additionalFiles": [
+        { "file": "src/transactions.ts", "containsString": "new Transaction(", "doesNotContainRegex": "\\bTransactionBlock\\b" },
+        { "file": "src/transactions.ts", "doesNotContainString": "@mysten/sui/transactions" }
+      ]
+    }
+  },
+  {
+    "id": "task-19-dof-accessor",
+    "title": "Attach a Treasury as a dynamic object field and expose a typed accessor",
+    "fixturePath": "fixtures/task-19-dof-accessor",
+    "prompt": "In `sources/pool.move`, implement the TODO: extend `new` (or add a separate entry function) that attaches a `Treasury` to a `Pool` as a dynamic object field keyed by `b\"treasury\"`. Add `treasury(&Pool): &Treasury` and `treasury_mut(&mut Pool): &mut Treasury` accessors. Then complete the corresponding test in `tests/pool_tests.move` so it asserts the Treasury balance via the accessor instead of aborting. The package must compile.",
+    "category": "multi-file",
+    "passCriteria": {
+      "file": "sources/pool.move",
+      "containsRegex": "(dynamic_object_field|dof)::add",
+      "alsoContainsRegex": "public fun treasury\\s*\\(",
+      "additionalFiles": [
+        { "file": "tests/pool_tests.move", "doesNotContainString": "abort 0" }
+      ],
+      "compileAfter": true
+    }
+  },
+  {
+    "id": "task-20-pool-safety",
+    "title": "Improve the safety of a shared deposit/withdraw pool",
+    "fixturePath": "fixtures/task-20-pool-safety",
+    "prompt": "Audit `sources/pool.move` and add safety improvements. The current implementation has no access control on withdraw, no per-address accounting, no events, and no bounds checking. Make the contract substantially safer while keeping the deposit/withdraw API usable. You may add new structs, capabilities, events, or invariants — your call. Justify any non-obvious design choices in comments.",
+    "category": "ambiguous",
+    "passCriteria": {
+      "file": "sources/pool.move",
+      "compileAfter": true
+    },
+    "rubric": {
+      "criteria": [
+        "correctness — implementation compiles and the new safety mechanism is semantically sound",
+        "idiomaticity — Move 2024 conventions: method-call form, capability shape, event past-tense names, no public entry",
+        "safety — withdraw is no longer unrestricted; accounting/caps/events meaningfully reduce attack surface",
+        "brevity — changes are scoped; no unnecessary new modules or complexity"
+      ],
+      "scale": "1-5",
+      "passThreshold": 16
+    }
+  },
+  {
+    "id": "task-21-withdraw-fee",
+    "title": "Add a withdraw fee mechanism to the pool",
+    "fixturePath": "fixtures/task-21-withdraw-fee",
+    "prompt": "Add a withdraw fee mechanism to `sources/pool.move`. The fee rate, storage shape (per-pool vs global config, basis points vs flat fee), and who receives the fee (protocol treasury, LPs, burned) are up to you — pick a coherent design and implement it end to end. The withdraw entry function must collect the fee atomically with the withdrawal.",
+    "category": "ambiguous",
+    "passCriteria": {
+      "file": "sources/pool.move",
+      "containsRegex": "fee|FEE",
+      "compileAfter": true
+    },
+    "rubric": {
+      "criteria": [
+        "correctness — fee is collected on every withdraw, accounting is consistent",
+        "idiomaticity — Move 2024 conventions, no public entry, balances vs coins used correctly",
+        "safety — fee can't be bypassed; no overflow on small/large amounts; no precision loss favoring the user",
+        "brevity — solution is proportional to the task; no over-engineered config plumbing"
+      ],
+      "scale": "1-5",
+      "passThreshold": 16
+    }
+  },
+  {
+    "id": "task-22-naming-cleanup",
+    "title": "Apply Move Book naming conventions to a messy module",
+    "fixturePath": "fixtures/task-22-naming-cleanup",
+    "prompt": "Clean up `sources/messy.move` to follow the Move Book code-quality naming conventions: error constants in EPascalCase (no ALL_CAPS error consts), capability structs suffixed with `Cap`, accessors named after their field (drop `get_` prefixes), mutable accessors suffixed `_mut`, and `setX` non-idiomatic setters replaced with mutable accessors where it makes sense. Keep the public API minimally broken — favor renames over deletions.",
+    "category": "ambiguous",
+    "passCriteria": {
+      "file": "sources/messy.move",
+      "doesNotContainString": "INVALID_AMOUNT",
+      "alsoContainsRegex": "fun name\\s*\\(",
+      "compileAfter": true
+    },
+    "rubric": {
+      "criteria": [
+        "correctness — every renamed identifier is referenced consistently; the module still compiles",
+        "idiomaticity — error consts EPascalCase, caps suffixed Cap, no `get_` prefixes, mutable accessors named `_mut`",
+        "completeness — all five anti-patterns in the fixture are addressed, not just one or two",
+        "brevity — renames only; no scope creep into new features"
+      ],
+      "scale": "1-5",
+      "passThreshold": 16
+    }
+  },
+  {
+    "id": "task-23-derived-object",
+    "title": "Use sui::derived_object for a deterministic Entry under a Registry",
+    "fixturePath": "fixtures/task-23-derived-object",
+    "prompt": "Implement the TODO in `sources/lib.move`: add `public fun claim_entry(registry: &mut Registry, key: u64, payload: u64, ctx: &mut TxContext): Entry` that creates an `Entry` whose `UID` is deterministically derived from `(registry.id, key)` using the `sui::derived_object` module. Two callers passing the same `(registry, key)` must abort. Read `.sui-docs/develop/objects/derived-objects.mdx` before implementing — the API shape evolved past the model's training cutoff.",
+    "category": "stale-training",
+    "passCriteria": {
+      "file": "sources/lib.move",
+      "containsRegex": "derived_object::(claim|derive_address|new)",
+      "compileAfter": true
+    }
+  },
+  {
+    "id": "task-24-graphql-client",
+    "title": "Migrate from JSON-RPC SuiClient to the @mysten/sui GraphQL client",
+    "fixturePath": "fixtures/task-24-graphql-client",
+    "prompt": "Migrate `src/index.ts` from the JSON-RPC `SuiClient` (`@mysten/sui/client`) to the GraphQL-backed client documented in `.ts-sdk-docs/sui/clients/graphql.mdx`. Replace the import, the constructor, and adapt the two query functions (`balanceOf`, `ownedObjects`) to the GraphQL API. The functions must keep the same signatures.",
+    "category": "stale-training",
+    "passCriteria": {
+      "file": "src/index.ts",
+      "containsRegex": "@mysten/sui/graphql",
+      "doesNotContainString": "@mysten/sui/client"
+    }
+  },
+  {
+    "id": "task-25-coin-registry",
+    "title": "Migrate a coin module from coin::create_currency to the Coin Registry",
+    "fixturePath": "fixtures/task-25-coin-registry",
+    "prompt": "Migrate `sources/demo.move` from the legacy `coin::create_currency` flow to the newer Coin Registry pattern. Read `.sui-docs/snippets/coin-standards-migrate.mdx` (and surrounding docs) for the exact API. Remove the legacy `coin::create_currency` call and any subsequent metadata freeze; emit the registry-based equivalent. The package must compile against the current Sui framework.",
+    "category": "stale-training",
+    "passCriteria": {
+      "file": "sources/demo.move",
+      "containsRegex": "coin_registry|coin::registry",
+      "doesNotContainString": "coin::create_currency",
+      "compileAfter": true
+    }
+  },
+  {
+    "id": "task-26-nft-display",
+    "title": "Configure sui::display::Display for an NFT module",
+    "fixturePath": "fixtures/task-26-nft-display",
+    "prompt": "Implement the TODO in `sources/nft.move`: inside `init`, construct a `sui::display::Display<Hero>` using the claimed `Publisher`, add at least the `name`, `image_url`, and `description` keys mapped to the corresponding struct fields, call `update_version` on the Display, and transfer both the Display and the Publisher to the sender. Read `.sui-docs/develop/objects/display/using-display.mdx` for the current API. The package must compile.",
+    "category": "stale-training",
+    "passCriteria": {
+      "file": "sources/nft.move",
+      "containsRegex": "display::(new|add_multiple)",
+      "alsoContainsRegex": "update_version",
+      "compileAfter": true
+    }
+  },
+  {
+    "id": "task-27-long-prompt-spec",
+    "title": "Implement a feature from a long structured spec (token-pressure)",
+    "fixturePath": "fixtures/task-27-long-prompt-spec",
+    "prompt": "Extend `sources/vault.move` to add the following feature set. Spec:\n\n1. Capability: add a `VaultAdminCap` capability struct. Mint exactly one in a fresh `init(ctx)` function and transfer it to the sender. Only the cap holder may perform admin actions (pause toggle).\n\n2. Per-address deposit ledger: instead of pooling all deposits, the vault must remember, per depositor address, the amount they have deposited so far. Use a dynamic field keyed on `address` storing a `Balance<SUI>` (or a tracked u64 — your call, document it). A second deposit from the same sender accumulates; a withdraw consumes some-or-all of that ledger entry.\n\n3. Pause toggle: a boolean `paused: bool` field on `Vault`. `deposit` and `withdraw` abort with `EVaultPaused` if `paused == true`. Add `set_paused(&mut Vault, &VaultAdminCap, bool)` to flip the flag.\n\n4. Events: emit `Deposited { who: address, amount: u64 }` after a successful deposit, and `Withdrew { who: address, amount: u64 }` after a successful withdraw. Event structs must be `has copy, drop`, named in past tense (per Move Book convention).\n\n5. Edge cases:\n   - withdraw of more than the depositor's ledger amount aborts with `EInsufficientLedger` (do not silently cap).\n   - withdraw of zero aborts with `EZeroAmount`.\n   - deposit of zero is a no-op (don't emit an event for it).\n   - calling withdraw with an address that has no ledger entry aborts with `ENoEntry`.\n\n6. Idioms: use Move 2024 conventions throughout (method-call form, no `public entry`, `EPascalCase` error constants, events in past tense). Use the `sui::dynamic_field` module for the ledger.\n\nAcceptance: the package must compile (`sui move build`). Keep `deposit` and `withdraw` as the public entry points (signature may change). Do not introduce new modules.",
+    "category": "token-pressure",
+    "passCriteria": {
+      "file": "sources/vault.move",
+      "containsString": "VaultAdminCap",
+      "alsoContainsRegex": "(Deposited|Withdrew)",
+      "doesNotContainString": "ALL_CAPS_ERROR",
+      "compileAfter": true
+    }
+  },
+  {
+    "id": "task-28-specify-discovery",
+    "title": "/specify identifies the externally-reachable function set",
+    "fixturePath": "fixtures/specify-discovery",
+    "prompt": "Run /specify on the Move package in the current directory in non-interactive mode (SPECIFY_AUTO_DEFAULTS=1). Phase 0 may surface that sui-prover is not installed in this eval environment — in that case still run Phase 1 (discovery) and write .specify-progress.json with the externally-reachable function set, then exit. The goal of this task is to verify the discovery classifier, not the prover invocation.",
+    "category": "specify",
+    "passCriteria": {
+      "file": ".specify-progress.json",
+      "containsString": "pub_fn",
+      "doesNotContainString": "pub_pkg_fn",
+      "additionalFiles": [
+        {"file": ".specify-progress.json", "containsString": "pub_entry_fn"},
+        {"file": ".specify-progress.json", "containsString": "entry_only_fn"},
+        {"file": ".specify-progress.json", "doesNotContainString": "private_fn"},
+        {"file": ".specify-progress.json", "doesNotContainString": "pub_macro_fn"},
+        {"file": ".specify-progress.json", "doesNotContainString": "test_only_pub_fn"},
+        {"file": ".specify-progress.json", "doesNotContainString": "test_fn"}
+      ]
+    }
+  },
+  {
+    "id": "task-nft-01-move-package",
+    "title": "NFT minting: complete Hero/Weapon Move package with tests",
+    "fixturePath": "fixtures/nft-app/move-empty",
+    "prompt": "Implement a Sui Move package for a simple NFT minting game. The fixture has Move.toml (edition 2024, name `hero`) with empty `sources/` and `tests/`. Create `sources/hero.move` and `tests/hero_tests.move`. Requirements:\n\n- Define three structs: `Hero` (key + store, fields: id UID, name String, stamina u64, weapon Option<Weapon>), `Weapon` (key + store, fields: id UID, name String, attack u64), and `HeroRegistry` (key, fields: id UID, ids vector<ID>, counter u64).\n- `init(ctx)` creates an empty `HeroRegistry` and shares it via `transfer::share_object`.\n- `new_hero(name: String, stamina: u64, registry: &mut HeroRegistry, ctx: &mut TxContext): Hero` mints a hero (weapon = `option::none()`), pushes its ID into the registry, increments the counter, and returns the hero.\n- `new_weapon(name: String, attack: u64, ctx: &mut TxContext): Weapon` returns a new weapon.\n- `equip_weapon(hero: &mut Hero, weapon: Weapon)` asserts `hero.weapon.is_none()` (abort `EAlreadyEquipedWeapon`) and calls `option::fill`.\n- `unequip_weapon(hero: &mut Hero): Weapon` asserts `hero.weapon.is_some()` (abort `ENotEquipedWeapon`) and returns `option::extract`.\n- Use Move 2024 idioms throughout (file-level `module hero::hero;`, method-call form, `EPascalCase` errors). Do NOT mark the functions `entry` if not needed — `new_hero`/`new_weapon` return values and should NOT be `entry`; `equip_weapon`/`unequip_weapon` may be either.\n- Add unit tests covering: registry init, minting a hero, equipping a weapon, double-equip aborts (`#[expected_failure(abort_code = ...)]`), unequipping, and unequip-empty aborts. All tests must pass.\n\nAcceptance: `sui move build` and `sui move test` both pass.",
+    "category": "nft-app",
+    "passCriteria": {
+      "file": "sources/hero.move",
+      "containsString": "module hero::hero;",
+      "alsoContainsRegex": "struct\\s+Hero\\s+has\\s+key,?\\s*store",
+      "doesNotContainString": "module hero::hero {",
+      "compileAfter": true,
+      "additionalFiles": [
+        {"file": "sources/hero.move", "containsString": "struct Weapon"},
+        {"file": "sources/hero.move", "containsString": "struct HeroRegistry"},
+        {"file": "sources/hero.move", "containsString": "transfer::share_object"},
+        {"file": "sources/hero.move", "containsRegex": "fun\\s+init\\s*\\("},
+        {"file": "sources/hero.move", "containsRegex": "fun\\s+new_hero\\s*\\("},
+        {"file": "sources/hero.move", "containsRegex": "fun\\s+new_weapon\\s*\\("},
+        {"file": "sources/hero.move", "containsRegex": "fun\\s+equip_weapon\\s*\\("},
+        {"file": "sources/hero.move", "containsRegex": "fun\\s+unequip_weapon\\s*\\("},
+        {"file": "tests/hero_tests.move", "containsString": "#[test]"},
+        {"file": "tests/hero_tests.move", "containsString": "#[expected_failure"}
+      ]
+    }
+  },
+  {
+    "id": "task-nft-02-dapp-kit-setup",
+    "title": "NFT minting: wire @mysten/dapp-kit-react provider with gRPC client",
+    "fixturePath": "fixtures/nft-app/ts-empty",
+    "prompt": "Wire up `@mysten/dapp-kit-react` in this Vite + React 19 + TypeScript app so the rest of the app can use dApp Kit hooks. The fixture has an empty `src/main.tsx`, an `.env.example` with `VITE_PACKAGE_ID` and `VITE_HEROES_REGISTRY_ID`, and a `package.json` with React but no dApp Kit deps.\n\nRequirements:\n- Add `@mysten/dapp-kit-react`, `@mysten/sui`, and `@tanstack/react-query` to `package.json` dependencies (you do not need to run `pnpm install`).\n- Create `src/dApp-kit.ts` exporting a `DAppKit` instance configured via `createDAppKit({ networks: ['mainnet','testnet','devnet'], defaultNetwork: 'testnet', enableBurnerWallet: import.meta.env.DEV, createClient(network) { return new SuiGrpcClient({ network, baseUrl: <map> }); } })`. Use the gRPC client, NOT the JSON-RPC one.\n- Update `src/main.tsx` to wrap the app in `<QueryClientProvider>` and `<DAppKitProvider>` and render `<ConnectButton />` in the app shell.\n- Use the modern SDK 2.0 API surface. Do NOT import the legacy 1.x `SuiClient` from `@mysten/sui/client`.\n\nAcceptance (static, no install/build required): the resulting code uses the right imports and function names.",
+    "category": "nft-app",
+    "passCriteria": {
+      "file": "src/main.tsx",
+      "containsString": "DAppKitProvider",
+      "alsoContainsString": "QueryClientProvider",
+      "additionalFiles": [
+        {"file": "src/main.tsx", "containsString": "ConnectButton"},
+        {"file": "src/dApp-kit.ts", "containsString": "createDAppKit"},
+        {"file": "src/dApp-kit.ts", "containsString": "SuiGrpcClient"},
+        {"file": "src/dApp-kit.ts", "containsString": "defaultNetwork"},
+        {"file": "src/dApp-kit.ts", "containsString": "enableBurnerWallet"},
+        {"file": "src/dApp-kit.ts", "doesNotContainString": "@mysten/sui/client"},
+        {"file": "src/dApp-kit.ts", "doesNotContainString": "SuiHTTPTransport"},
+        {"file": "package.json", "containsString": "@mysten/dapp-kit-react"},
+        {"file": "package.json", "containsString": "@mysten/sui"},
+        {"file": "package.json", "containsString": "@tanstack/react-query"}
+      ]
+    }
+  },
+  {
+    "id": "task-nft-03-mint-and-list-components",
+    "title": "NFT minting: mint+equip PTB component and shared-registry list component",
+    "fixturePath": "fixtures/nft-app/ts-empty",
+    "prompt": "Build the two key React components of the NFT minting dapp:\n\n1. `src/components/CreateHeroForm.tsx` — a form that builds a programmable transaction block doing four moveCalls in one PTB: (a) `${VITE_PACKAGE_ID}::hero::new_hero(name, stamina, &mut registry)`, (b) `${VITE_PACKAGE_ID}::hero::new_weapon(name, attack)`, (c) `${VITE_PACKAGE_ID}::hero::equip_weapon(hero, weapon)`, and (d) `tx.transferObjects([hero], account.address)`. Use dApp Kit hooks (`useCurrentAccount`, `useCurrentClient`, and `useDAppKit().signAndExecuteTransaction` or equivalent). Build the PTB with `new Transaction()` from `@mysten/sui/transactions`, use `tx.pure.string`, `tx.pure.u64`, `tx.object` for args, and pass the hero object reference returned by `new_hero` directly into `equip_weapon` and `transferObjects`. After execution call `useQueryClient().invalidateQueries` for the registry and owned-objects queries.\n\n2. `src/components/HeroesList.tsx` — reads the shared `HeroRegistry` via `useCurrentClient().getObject({ id: import.meta.env.VITE_HEROES_REGISTRY_ID, include: { json: true } })` wrapped in `useQuery({ queryKey: ['getObject', VITE_HEROES_REGISTRY_ID] })`, then renders each `id` in the registry's `ids` vector as a link to `https://testnet.suivision.xyz/object/<id>`.\n\nAssume the dApp Kit provider is already wired in `main.tsx` (don't modify it). You may add the imports to `package.json` if needed. Static-only acceptance — no install/build required.",
+    "category": "nft-app",
+    "passCriteria": {
+      "file": "src/components/CreateHeroForm.tsx",
+      "containsString": "new Transaction()",
+      "alsoContainsString": "tx.moveCall",
+      "additionalFiles": [
+        {"file": "src/components/CreateHeroForm.tsx", "containsString": "::hero::new_hero"},
+        {"file": "src/components/CreateHeroForm.tsx", "containsString": "::hero::new_weapon"},
+        {"file": "src/components/CreateHeroForm.tsx", "containsString": "::hero::equip_weapon"},
+        {"file": "src/components/CreateHeroForm.tsx", "containsString": "tx.transferObjects"},
+        {"file": "src/components/CreateHeroForm.tsx", "containsString": "signAndExecuteTransaction"},
+        {"file": "src/components/CreateHeroForm.tsx", "containsString": "useQueryClient"},
+        {"file": "src/components/CreateHeroForm.tsx", "containsString": "tx.pure.string"},
+        {"file": "src/components/CreateHeroForm.tsx", "containsString": "tx.pure.u64"},
+        {"file": "src/components/CreateHeroForm.tsx", "containsString": "tx.object"},
+        {"file": "src/components/HeroesList.tsx", "containsString": "useCurrentClient"},
+        {"file": "src/components/HeroesList.tsx", "containsString": "getObject"},
+        {"file": "src/components/HeroesList.tsx", "containsString": "include: { json: true }"},
+        {"file": "src/components/HeroesList.tsx", "containsRegex": "useQuery\\s*\\("},
+        {"file": "src/components/HeroesList.tsx", "containsString": "suivision.xyz/object/"},
+        {"file": "src/components/HeroesList.tsx", "doesNotContainString": "getOwnedObjects"}
+      ]
+    }
+  },
+  {
+    "id": "task-nft-04-full-stack-smoke",
+    "title": "NFT minting: end-to-end full-stack build",
+    "fixturePath": "fixtures/nft-app/full-stack",
+    "prompt": "Complete the full NFT minting dapp end-to-end. The fixture has both halves scaffolded but empty:\n- `move/hero/` has `Move.toml` (edition 2024, name `hero`) with empty `sources/` and `tests/`.\n- `app/my-first-sui-dapp/` is a Vite + React 19 + TS scaffold with empty `src/main.tsx` and an `.env.example` declaring `VITE_PACKAGE_ID` and `VITE_HEROES_REGISTRY_ID`.\n\nBuild the complete app so that:\n1. The Move package compiles with `sui move build` (run from `move/hero/`) and all unit tests pass with `sui move test`. Mirror the Hero/Weapon/HeroRegistry contract described above — three structs, an `init` that shares the registry, `new_hero`/`new_weapon`/`equip_weapon`/`unequip_weapon` functions, idiomatic Move 2024 throughout.\n2. The React app installs (`pnpm install`), type-checks (`pnpm tsc --noEmit` from `app/my-first-sui-dapp/`), and builds (`pnpm build`). It uses `@mysten/dapp-kit-react` + `SuiGrpcClient`, includes a `CreateHeroForm` component that fires the four-call PTB (`new_hero` → `new_weapon` → `equip_weapon` → `transferObjects`), and includes a `HeroesList` component that reads the shared registry and renders the ids as links to `https://testnet.suivision.xyz/object/<id>`.\n\nThis is the end-to-end smoke test; quality, idiom adherence, and end-to-end coherence will be rubric-scored in addition to the literal pass criteria.",
+    "category": "nft-app",
+    "passCriteria": {
+      "file": "move/hero/sources/hero.move",
+      "containsString": "module hero::hero;",
+      "alsoContainsRegex": "struct\\s+Hero\\s+has\\s+key,?\\s*store",
+      "compileAfter": true,
+      "tsBuildAfter": true,
+      "tsBuildSubdir": "app/my-first-sui-dapp",
+      "additionalFiles": [
+        {"file": "move/hero/sources/hero.move", "containsString": "transfer::share_object"},
+        {"file": "move/hero/sources/hero.move", "containsRegex": "fun\\s+init\\s*\\("},
+        {"file": "move/hero/sources/hero.move", "containsRegex": "fun\\s+new_hero\\s*\\("},
+        {"file": "move/hero/sources/hero.move", "containsRegex": "fun\\s+equip_weapon\\s*\\("},
+        {"file": "move/hero/tests/hero_tests.move", "containsString": "#[test]"},
+        {"file": "app/my-first-sui-dapp/src/main.tsx", "containsString": "DAppKitProvider"},
+        {"file": "app/my-first-sui-dapp/src/dApp-kit.ts", "containsString": "SuiGrpcClient"},
+        {"file": "app/my-first-sui-dapp/src/components/CreateHeroForm.tsx", "containsString": "tx.moveCall"},
+        {"file": "app/my-first-sui-dapp/src/components/CreateHeroForm.tsx", "containsString": "::hero::new_hero"},
+        {"file": "app/my-first-sui-dapp/src/components/HeroesList.tsx", "containsString": "getObject"},
+        {"file": "app/my-first-sui-dapp/package.json", "containsString": "@mysten/dapp-kit-react"}
+      ],
+      "rubric": {
+        "criteria": [
+          "correctness: Move package compiles, tests pass, TS build succeeds",
+          "faithfulness: PTB shape matches a reference NFT mint pattern (4 moveCalls in one tx, hero ref threaded through, transferObjects at the end)",
+          "doc-usage-evidence: the model issued Glob/Grep/Read against bundled .sui-docs/ or .ts-sdk-docs/ paths during the run (post-hoc transcript scan)",
+          "code-quality: Move 2024 idioms (method-call form, EPascalCase errors, file-level module syntax); SDK 2.0 idioms on the TS side (no @mysten/sui/client imports, gRPC client used)"
+        ],
+        "scale": "1-3 per criterion",
+        "passThreshold": 9
+      }
+    }
+  }
+]

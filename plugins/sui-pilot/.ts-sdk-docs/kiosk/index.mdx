@@ -1,0 +1,24 @@
+---
+title: Kiosk SDK
+description: TypeScript SDK for interacting with Sui Kiosk onchain commerce.
+keywords: [Kiosk SDK, Sui, onchain commerce, NFT, marketplace, TypeScript, mysten/kiosk]
+---
+
+Kiosk SDK is a tool to interact with Sui and Mysten Kiosk. You can use it to query kiosk related
+data, build transactions to interact, and extend Kiosk to support custom rules.
+
+## Installation
+
+```sh npm2yarn
+npm i @mysten/kiosk
+```
+
+## About
+
+The Kiosk SDK exports a client extension that integrates with Sui clients. Add it to your client
+using `$extend(kiosk())` to access kiosk functionality through `client.kiosk`.
+
+> The Kiosk SDK requires `SuiJsonRpcClient` or `SuiGraphQLClient`. It does not work with
+> `SuiGrpcClient` because it uses event queries that are not available in gRPC.
+
+- [Read more about setting up the Kiosk client extension](/kiosk/kiosk-client/introduction)
