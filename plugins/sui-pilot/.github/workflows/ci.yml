@@ -1,0 +1,159 @@
+name: CI
+
+permissions:
+  contents: read
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          package_json_file: mcp/move-lsp-mcp/package.json
+
+      - name: Install dependencies (move-lsp-mcp)
+        working-directory: mcp/move-lsp-mcp
+        run: pnpm install
+
+      - name: Build MCP server (move-lsp-mcp)
+        working-directory: mcp/move-lsp-mcp
+        run: pnpm build
+
+      - name: Verify committed bundle matches source (move-lsp-mcp)
+        # Only diff the runtime bundle — sourcemap `sources` paths leak the
+        # local pnpm store layout and differ across environments, so they're
+        # not a stable reproducibility signal.
+        run: |
+          if ! git diff --exit-code mcp/move-lsp-mcp/dist/index.js; then
+            echo ""
+            echo "::error::move-lsp-mcp/dist/index.js is out of sync with src/. Run 'pnpm --dir mcp/move-lsp-mcp build' and recommit."
+            exit 1
+          fi
+
+      - name: Enforce move-lsp-mcp bundle size budget
+        # ~600 KB ceiling on the minified ESM bundle. Current size ~480 KB
+        # (mostly ajv via @modelcontextprotocol/sdk). Bumping this ceiling
+        # should be a deliberate choice, not a silent drift from dep growth.
+        run: |
+          BUDGET_BYTES=600000
+          SIZE=$(wc -c < mcp/move-lsp-mcp/dist/index.js)
+          echo "Bundle size: ${SIZE} bytes (budget: ${BUDGET_BYTES})"
+          if [ "$SIZE" -gt "$BUDGET_BYTES" ]; then
+            echo "::error::move-lsp-mcp bundle exceeds ${BUDGET_BYTES} bytes (current: ${SIZE}). Investigate dependency growth before raising the budget."
+            exit 1
+          fi
+
+      - name: Run unit tests (move-lsp-mcp)
+        working-directory: mcp/move-lsp-mcp
+        run: pnpm test -- --reporter=verbose
+
+      - name: Install dependencies (sui-prover-mcp)
+        working-directory: mcp/sui-prover-mcp
+        run: pnpm install
+
+      - name: Build MCP server (sui-prover-mcp)
+        working-directory: mcp/sui-prover-mcp
+        run: pnpm build
+
+      - name: Verify committed bundle matches source (sui-prover-mcp)
+        run: |
+          if ! git diff --exit-code mcp/sui-prover-mcp/dist/index.js; then
+            echo ""
+            echo "::error::sui-prover-mcp/dist/index.js is out of sync with src/. Run 'pnpm --dir mcp/sui-prover-mcp build' and recommit."
+            exit 1
+          fi
+
+      - name: Enforce sui-prover-mcp bundle size budget
+        # ~350 KB ceiling on the minified ESM bundle. Current size ~260 KB.
+        # This MCP only depends on @modelcontextprotocol/sdk; growth past
+        # the ceiling means a new heavy dep crept in.
+        run: |
+          BUDGET_BYTES=350000
+          SIZE=$(wc -c < mcp/sui-prover-mcp/dist/index.js)
+          echo "Bundle size: ${SIZE} bytes (budget: ${BUDGET_BYTES})"
+          if [ "$SIZE" -gt "$BUDGET_BYTES" ]; then
+            echo "::error::sui-prover-mcp bundle exceeds ${BUDGET_BYTES} bytes (current: ${SIZE}). Investigate dependency growth before raising the budget."
+            exit 1
+          fi
+
+      - name: Run unit tests (sui-prover-mcp)
+        # SKIP_PROVER_NETWORK=1 disables the warm-cache prove() round-trip --
+        # it requires a sui-prover binary plus a network clone of
+        # asymptotic-code/sui-prover@main into ~/.move, neither of which
+        # CI runners get for free.
+        working-directory: mcp/sui-prover-mcp
+        env:
+          SKIP_PROVER_NETWORK: '1'
+        run: pnpm test
+
+      - name: Verify plugin structure
+        run: |
+          echo "Checking plugin structure..."
+          test -f .claude-plugin/plugin.json && echo "✓ plugin.json exists"
+          test -f agents/sui-pilot-agent.md && echo "✓ agent exists"
+          test -d skills && echo "✓ skills directory exists"
+          test -f mcp/move-lsp-mcp/dist/index.js && echo "✓ MCP server built"
+          test -f LICENSE && echo "✓ LICENSE exists"
+
+      - name: Check documentation directories
+        run: |
+          echo "Checking documentation..."
+          count_doc_files() { find "$1" -type f \( -name '*.mdx' -o -name '*.md' \) | wc -l; }
+          test -d .sui-docs && echo "✓ .sui-docs exists ($(count_doc_files .sui-docs) doc files)"
+          test -d .move-book-docs && echo "✓ .move-book-docs exists ($(count_doc_files .move-book-docs) doc files)"
+          test -d .walrus-docs && echo "✓ .walrus-docs exists ($(count_doc_files .walrus-docs) doc files)"
+          test -d .seal-docs && echo "✓ .seal-docs exists ($(count_doc_files .seal-docs) doc files)"
+          test -d .ts-sdk-docs && echo "✓ .ts-sdk-docs exists ($(count_doc_files .ts-sdk-docs) doc files)"
+          test -d .sui-prover-docs && echo "✓ .sui-prover-docs exists ($(count_doc_files .sui-prover-docs) doc files)"
+
+      - name: Smoke test bundled skills
+        run: bash scripts/smoke-test-skills.sh
+
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          package_json_file: mcp/move-lsp-mcp/package.json
+
+      - name: Install dependencies
+        working-directory: mcp/move-lsp-mcp
+        run: pnpm install
+
+      - name: Type check (move-lsp-mcp)
+        working-directory: mcp/move-lsp-mcp
+        run: pnpm exec tsc --noEmit
+
+      - name: Install dependencies (sui-prover-mcp)
+        working-directory: mcp/sui-prover-mcp
+        run: pnpm install
+
+      - name: Type check (sui-prover-mcp)
+        working-directory: mcp/sui-prover-mcp
+        run: pnpm exec tsc --noEmit
