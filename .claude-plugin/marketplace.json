@@ -10,7 +10,7 @@
   "plugins": [
     {
       "name": "sui-pilot",
-      "description": "Sui Move development plugin \u2014 753 bundled docs, Move LSP integration, Sui Prover formal verification, and five specialized skills (code quality, security review, math safety, formal specs, verification).",
+      "description": "Sui Move development plugin \u2014 812 bundled docs, Move LSP integration, Sui Prover formal verification, and five specialized skills (code quality, security review, math safety, formal specs, verification).",
       "source": {
         "source": "github",
         "repo": "contract-hero/sui-pilot"
