@@ -12,7 +12,8 @@ In a Claude Code session:
 /plugin marketplace add contract-hero/plugin-marketplace
 /plugin install sui-pilot@contract-hero
 /plugin install codex-bridge@contract-hero
-/plugin install acc-deepbook-course@contract-hero
+/plugin install agentic-community-college@contract-hero
+/plugin install acc-claude-sdk@contract-hero
 ```
 
 Restart Claude Code after install so MCP servers spawn correctly.
@@ -35,7 +36,10 @@ Codex reads `.agents/plugins/marketplace.json`. Unlike the Claude catalog, Codex
 | [`sui-pilot`](https://github.com/contract-hero/sui-pilot) | Sui Move development plugin — 753 bundled docs, Move LSP, Sui Prover formal verification, and five specialized skills. | `contract-hero/sui-pilot` | https://contract-hero.github.io/sui-pilot/ |
 | [`codex-bridge`](https://github.com/contract-hero/codex-bridge) | Bridge to OpenAI Codex CLI — `/codex` for direct calls and `/claudex` for multi-round Claude↔Codex prompt refinement. | `contract-hero/codex-bridge` | https://github.com/contract-hero/codex-bridge |
 | [`code-forge`](https://github.com/contract-hero/code-forge) | Multi-agent build system with TDD-as-phase, parallel review, best-of-N implementer, and forge-guard hook discipline. | `contract-hero/code-forge` | https://github.com/contract-hero/code-forge |
-| [`acc-deepbook-course`](https://github.com/contract-hero/acc-deepbook-course) | Interactive Sui DeepBook course for advanced DeFi developers — `/acc-deepbook-course:start` opens a guided lesson driven by an MCP server, with preflight diagnostics and an escalating help ladder. | `contract-hero/acc-deepbook-course` | https://github.com/contract-hero/acc-deepbook-course |
+| [`agentic-community-college`](https://github.com/contract-hero/agentic-community-college) | Claude Code learning framework (v0.3 chapter model): a lesson is split into chapters defined by tests; the conductor implements each chapter in a seeded workspace, explains it with an HTML artifact, and closes with an end-to-end test and a summary. Bring a course plugin. | `contract-hero/agentic-community-college` | https://contract-hero.github.io/agentic-community-college/ |
+| [`acc-claude-sdk`](https://github.com/contract-hero/acc-claude-sdk) | ACC course: build agents with the Claude Agent SDK (TypeScript), chapter by chapter. `/acc-claude-sdk:start` opens lesson 1: a first `query()`, a custom in-process tool, a testable CLI. | `contract-hero/acc-claude-sdk` | https://github.com/contract-hero/acc-claude-sdk |
+| [`acc-deepbook-course`](https://github.com/contract-hero/acc-deepbook-course) | Previous work: Sui DeepBook course on the ACC v0.2 section model, pending migration to v0.3 chapters. `/acc-deepbook-course:start` once migrated. | `contract-hero/acc-deepbook-course` | https://github.com/contract-hero/acc-deepbook-course |
+| [`acc-evm-wal`](https://github.com/contract-hero/acc-evm-wal) | Previous work: six Walrus × EVM lessons on the ACC v0.2 section model, pending migration to v0.3 chapters. | `contract-hero/acc-evm-wal` | https://github.com/contract-hero/acc-evm-wal |
 
 ## What this repo contains
 
