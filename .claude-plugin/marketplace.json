@@ -5,12 +5,12 @@
     "email": "alilloig@gmail.com"
   },
   "metadata": {
-    "description": "Claude Code plugins maintained by Contract Hero \u2014 Sui Move tooling and developer-experience extensions."
+    "description": "Claude Code plugins maintained by Contract Hero — Sui Move tooling and developer-experience extensions."
   },
   "plugins": [
     {
       "name": "sui-pilot",
-      "description": "Sui Move development plugin \u2014 812 bundled docs, Move LSP integration, Sui Prover formal verification, and five specialized skills (code quality, security review, math safety, formal specs, verification).",
+      "description": "Sui Move development plugin — 812 bundled docs, Move LSP integration, Sui Prover formal verification, and five specialized skills (code quality, security review, math safety, formal specs, verification).",
       "source": {
         "source": "github",
         "repo": "contract-hero/sui-pilot"
@@ -33,7 +33,7 @@
     },
     {
       "name": "codex-bridge",
-      "description": "Bridge to OpenAI Codex CLI \u2014 /codex execution and /claudex multi-round prompt refinement.",
+      "description": "Bridge to OpenAI Codex CLI — /codex execution and /claudex multi-round prompt refinement.",
       "source": {
         "source": "github",
         "repo": "contract-hero/codex-bridge"
@@ -72,7 +72,7 @@
     },
     {
       "name": "agentic-community-college",
-      "description": "Claude Code learning framework that runs reference-seeded coding lessons through MCP. Ships course-engine + course-conductor + course-creator + lesson-creator skills and a declarative probe runtime. Pair with any acc-content plugin (e.g. acc-deepbook-course) to teach a domain.",
+      "description": "Claude Code learning framework (v0.3 chapter model). A course plugin splits a lesson into chapters defined by tests; the conductor implements each chapter in a seeded workspace, explains it with a self-contained HTML artifact, and closes the lesson with an end-to-end test and a summary page. Ships the MCP server plus the course-engine, course-conductor, course-creator, lesson-creator and chapter-artifact skills. Pair with a course plugin such as acc-claude-sdk.",
       "source": {
         "source": "github",
         "repo": "contract-hero/agentic-community-college"
@@ -89,12 +89,37 @@
         "mcp",
         "claude-code",
         "framework",
+        "agentic-community-college",
+        "chapters",
+        "artifacts",
+        "agent-sdk"
+      ]
+    },
+    {
+      "name": "acc-claude-sdk",
+      "description": "ACC course: build agents with the Claude Agent SDK (TypeScript), chapter by chapter, with tests as the contract. Lesson 1 runs a query() and reads the result message, adds a custom in-process tool via createSdkMcpServer(), and wraps it in a testable CLI; the live end-to-end test needs ANTHROPIC_API_KEY. First course on the ACC v0.3 chapter model. Requires the agentic-community-college plugin to run.",
+      "source": {
+        "source": "github",
+        "repo": "contract-hero/acc-claude-sdk"
+      },
+      "homepage": "https://github.com/contract-hero/acc-claude-sdk",
+      "repository": "https://github.com/contract-hero/acc-claude-sdk",
+      "license": "MIT",
+      "category": "education",
+      "keywords": [
+        "claude",
+        "agent-sdk",
+        "agents",
+        "typescript",
+        "course",
+        "lesson",
+        "acc-content",
         "agentic-community-college"
       ]
     },
     {
       "name": "acc-deepbook-course",
-      "description": "DeepBook content for the Agentic Community College (ACC) framework \u2014 bundles hands-on lessons that walk learners through building Sui DeepBook integrations end-to-end. Requires the agentic-community-college plugin to run.",
+      "description": "DeepBook content for the Agentic Community College (ACC) framework — bundles hands-on lessons that walk learners through building Sui DeepBook integrations end-to-end. Requires the agentic-community-college plugin to run. Built on the ACC v0.2 section model (previous work): pending migration to v0.3 chapters, so it does not run on the current agentic-community-college release.",
       "source": {
         "source": "github",
         "repo": "contract-hero/acc-deepbook-course"
@@ -115,7 +140,7 @@
     },
     {
       "name": "toolkit",
-      "description": "Self-contained HTML deliverable toolkit \u2014 bundles html-artifact (one-off visual deliverables), publish-html (turn a local .html into a shareable URL), for-dummies (auto-derived project intros), and move-call-chains (HTML call-chain diagrams for Sui Move packages). Used by agentic-community-college's claude-plugin-enabled probe.",
+      "description": "Self-contained HTML deliverable toolkit — bundles html-artifact (one-off visual deliverables), publish-html (turn a local .html into a shareable URL), for-dummies (auto-derived project intros), and move-call-chains (HTML call-chain diagrams for Sui Move packages). When enabled, agentic-community-college offers publish-html on the lesson summary artifact.",
       "source": {
         "source": "github",
         "repo": "contract-hero/toolkit"
@@ -136,7 +161,7 @@
     },
     {
       "name": "acc-evm-wal",
-      "description": "ACC content plugin teaching the basics of Walrus decentralized storage and how to integrate it with Solidity smart contracts. Ships one short Foundry-based lesson (offline-runnable) that walks learners through building a WalrusAnchor contract end-to-end. Requires the agentic-community-college plugin to run.",
+      "description": "ACC content plugin teaching Walrus decentralized storage from Solidity and TypeScript: six Foundry and pnpm lessons (blob anchoring, Walrus Sites, an ENS-gated resolver, DAO proposals, a verifiable manifest client, a quilt-backed ERC-721), each gated on its test suite. Requires the agentic-community-college plugin to run. Built on the ACC v0.2 section model (previous work): pending migration to v0.3 chapters, so it does not run on the current agentic-community-college release.",
       "source": {
         "source": "github",
         "repo": "contract-hero/acc-evm-wal"
@@ -159,7 +184,7 @@
     },
     {
       "name": "sui-agent-tank",
-      "description": "Guided evaluation harness \u2014 grade a Sui-stack context bundle (a skill folder or a Claude Code plugin) by GitHub URL. /tank clones it, auto-detects the kind, runs a containerized agent through compile/test gates + Move anti-pattern traps + a cross-model judge, and reports.",
+      "description": "Guided evaluation harness — grade a Sui-stack context bundle (a skill folder or a Claude Code plugin) by GitHub URL. /tank clones it, auto-detects the kind, runs a containerized agent through compile/test gates + Move anti-pattern traps + a cross-model judge, and reports.",
       "source": {
         "source": "github",
         "repo": "contract-hero/sui-agent-tank"
