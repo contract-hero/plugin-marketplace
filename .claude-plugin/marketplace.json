@@ -203,6 +203,27 @@
         "grading",
         "tank"
       ]
+    },
+    {
+      "name": "vlerv",
+      "description": "Send local files straight to your paired Vlervtifacts devices over a direct, end-to-end encrypted peer-to-peer link, and write vlerv:// links that open on any of them rather than only on the Mac that made them.",
+      "source": {
+        "source": "github",
+        "repo": "contract-hero/vlerv-plugin"
+      },
+      "homepage": "https://github.com/contract-hero/vlerv-plugin",
+      "repository": "https://github.com/contract-hero/vlerv-plugin",
+      "license": "MIT",
+      "category": "development",
+      "keywords": [
+        "vlerv",
+        "vlervtifacts",
+        "file-transfer",
+        "peer-to-peer",
+        "remote-control",
+        "pairing",
+        "deep-links"
+      ]
     }
   ]
 }
