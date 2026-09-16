@@ -32,24 +32,6 @@
       ]
     },
     {
-      "name": "codex-bridge",
-      "description": "Bridge to OpenAI Codex CLI — /codex execution and /claudex multi-round prompt refinement.",
-      "source": {
-        "source": "github",
-        "repo": "contract-hero/codex-bridge"
-      },
-      "homepage": "https://github.com/contract-hero/codex-bridge",
-      "repository": "https://github.com/contract-hero/codex-bridge",
-      "license": "Apache-2.0",
-      "category": "development",
-      "keywords": [
-        "codex",
-        "openai",
-        "bridge",
-        "agent"
-      ]
-    },
-    {
       "name": "code-forge",
       "description": "Multi-agent build system with TDD-as-phase, script-coordinated parallel review, best-of-N implementer, and forge-guard hook discipline.",
       "source": {
