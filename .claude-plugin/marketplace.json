@@ -206,6 +206,26 @@
         "pairing",
         "deep-links"
       ]
+    },
+    {
+      "name": "skypie",
+      "description": "Send local files straight to your paired Sky Pie devices over a direct, end-to-end encrypted peer-to-peer link, and write skypie:// links that open on any of them rather than only on the Mac that made them.",
+      "source": {
+        "source": "github",
+        "repo": "contract-hero/skypie-plugin"
+      },
+      "homepage": "https://github.com/contract-hero/skypie-plugin",
+      "repository": "https://github.com/contract-hero/skypie-plugin",
+      "license": "Apache-2.0",
+      "category": "development",
+      "keywords": [
+        "skypie",
+        "file-transfer",
+        "peer-to-peer",
+        "remote-control",
+        "pairing",
+        "deep-links"
+      ]
     }
   ]
 }
