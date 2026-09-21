@@ -38,6 +38,7 @@ Codex reads `.agents/plugins/marketplace.json`. Unlike the Claude catalog, Codex
 | [`acc-claude-sdk`](https://github.com/contract-hero/acc-claude-sdk) | ACC course: build agents with the Claude Agent SDK (TypeScript), chapter by chapter. `/acc-claude-sdk:start` opens lesson 1: a first `query()`, a custom in-process tool, a testable CLI. | `contract-hero/acc-claude-sdk` | https://github.com/contract-hero/acc-claude-sdk |
 | [`acc-deepbook-course`](https://github.com/contract-hero/acc-deepbook-course) | Previous work: Sui DeepBook course on the ACC v0.2 section model, pending migration to v0.3 chapters. `/acc-deepbook-course:start` once migrated. | `contract-hero/acc-deepbook-course` | https://github.com/contract-hero/acc-deepbook-course |
 | [`acc-evm-wal`](https://github.com/contract-hero/acc-evm-wal) | Previous work: six Walrus × EVM lessons on the ACC v0.2 section model, pending migration to v0.3 chapters. | `contract-hero/acc-evm-wal` | https://github.com/contract-hero/acc-evm-wal |
+| [`skypie`](https://github.com/contract-hero/skypie-plugin) | Sky Pie plugin: share the HTML artifacts you build in Claude Code to your iPhone or another Mac over an end-to-end encrypted peer-to-peer link, no server. | `contract-hero/skypie-plugin` | https://contract-hero.github.io/skypie-core/ |
 
 ## What this repo contains
 
