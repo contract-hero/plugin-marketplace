@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>All plugins — Contract Hero</title>
-<meta name="description" content="The full Contract Hero catalog of Claude Code plugins — sui-pilot, sui-agent-tank, code-forge, toolkit, agentic-community-college, acc-deepbook-course and acc-evm-wal.">
+<meta name="description" content="The full Contract Hero catalog of Claude Code plugins — sui-pilot, sui-agent-tank, code-forge, toolkit, agentic-community-college, acc-deepbook-course, acc-evm-wal and skypie.">
 <link rel="icon" type="image/png" href="assets/contract-hero.png">
 <meta property="og:title" content="All plugins — Contract Hero">
-<meta property="og:description" content="Sui, EVM &amp; Claude Code tooling, by Álvaro Lillo. Add one marketplace, install nine plugins.">
+<meta property="og:description" content="Sui, EVM &amp; Claude Code tooling, by Álvaro Lillo. Add one marketplace, install ten plugins.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://contract-hero.github.io/plugin-marketplace/plugins.html">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -22,7 +22,7 @@
     --ink-2:#b9c6bd;
     --muted:#9fb0a4;
     --muted-2:#8ea095;
-    --dim:#6b7d70;
+    --dim:#7f9284;
     --g:#3df08a;
     --g-line:#245c3b;
     --line:#1f2a22;
@@ -158,7 +158,7 @@
 
   <section class="plugins" id="catalog">
     <div class="wrap">
-      <div class="sec-head"><span class="idx">02</span><h2>The catalog</h2><p class="sub">Nine plugins, three domains.</p></div>
+      <div class="sec-head"><span class="idx">02</span><h2>The catalog</h2><p class="sub">Ten plugins, four domains.</p></div>
 
       <!-- Sui Move -->
       <div class="group">
@@ -180,7 +180,7 @@
             <p>Guided evaluation harness — grade a Sui-stack context bundle (a skill folder or a Claude Code plugin) by GitHub URL. <span class="mono">/tank</span> clones it, auto-detects the kind, runs a containerized agent through compile/test gates plus Move anti-pattern traps and a cross-model judge, and reports.</p>
             <div class="chips"><span class="chip">sui</span><span class="chip">move</span><span class="chip">eval</span><span class="chip">grading</span><span class="chip">tank</span></div>
             <div class="cmd">/plugin install sui-agent-tank@contract-hero</div>
-            <div class="card-links"><a href="https://github.com/contract-hero/sui-agent-tank" target="_blank" rel="noopener">GitHub ↗</a></div>
+            <div class="card-links"><span data-todo="repo contract-hero/sui-agent-tank is private; GitHub link returns 404">private repo</span></div>
           </article>
         </div>
       </div>
@@ -210,7 +210,7 @@
             <p>Send local files straight to your paired Vlervtifacts devices over a direct, end-to-end encrypted peer-to-peer link, and write vlerv:// links that open on any of them rather than only on the Mac that made them.</p>
             <div class="chips"><span class="chip">artifacts</span><span class="chip">share</span><span class="chip">e2ee</span><span class="chip">mac</span></div>
             <div class="cmd">/plugin install vlerv@contract-hero</div>
-            <div class="card-links"><a href="https://github.com/contract-hero/vlerv" target="_blank" rel="noopener">GitHub ↗</a></div>
+            <div class="card-links"><span data-todo="repo contract-hero/vlerv is private; GitHub link returns 404">private repo</span></div>
           </article>
         </div>
       </div>
@@ -256,16 +256,15 @@
         </div>
       </div>
 
-      <!-- DRAFT — flip data-display to "true" and remove hidden once skypie.ai is live -->
-      <div class="group" data-display="false" hidden>
-        <div class="group-label"><span class="tag"><b>◆</b> Sky Pie</span><span class="rule"></span></div>
+      <div class="group">
+        <div class="group-label"><span class="tag"><b>◆</b> skypies</span><span class="rule"></span></div>
         <div class="grid">
-          <article class="card" id="skypie" data-display="false" hidden>
+          <article class="card" id="skypie">
             <h3>skypie</h3>
-            <p>Share the HTML artifacts you build in Claude Code straight to your iPhone, over an end-to-end encrypted peer-to-peer link — no server. The plugin drives the Sky Pie Mac app from inside your session.</p>
+            <p>Share the HTML artifacts you build in Claude Code straight to your iPhone, over an end-to-end encrypted peer-to-peer link — no server. The plugin drives the skypies Mac app from inside your session.</p>
             <div class="chips"><span class="chip">artifact</span><span class="chip">share</span><span class="chip">e2ee</span><span class="chip">mac</span></div>
             <div class="cmd">/plugin install skypie@contract-hero</div>
-            <div class="card-links"><a class="site" href="https://skypie.ai" target="_blank" rel="noopener">skypie.ai ↗</a></div>
+            <div class="card-links"><a class="site" href="https://contract-hero.github.io/skypie-core/" data-todo="404 until skypie-core GitHub Pages is enabled after the brand/landing PR merges" target="_blank" rel="noopener">skypies ↗</a></div>
           </article>
         </div>
       </div>
@@ -288,7 +287,7 @@
         <h4>Plugins</h4>
         <div class="foot-links">
           <a href="https://github.com/contract-hero/sui-pilot" target="_blank" rel="noopener">sui-pilot</a>
-          <a href="https://github.com/contract-hero/sui-agent-tank" target="_blank" rel="noopener">sui-agent-tank</a>
+          <span data-todo="repo contract-hero/sui-agent-tank is private; GitHub link returns 404">sui-agent-tank</span>
           <a href="https://github.com/contract-hero/code-forge" target="_blank" rel="noopener">code-forge</a>
           <a href="https://github.com/contract-hero/toolkit" target="_blank" rel="noopener">toolkit</a>
           <a href="https://github.com/contract-hero/agentic-community-college" target="_blank" rel="noopener">agentic-community-college</a>
