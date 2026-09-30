@@ -34,6 +34,32 @@
         "formal-verification",
         "prover"
       ]
+    },
+    {
+      "name": "skypies",
+      "description": "Send every document Codex creates to your paired skypies devices: Codex mints a link with share_link, and the file travels over a direct, end-to-end encrypted peer-to-peer link. Needs the skypies Mac app.",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/contract-hero/skypies-plugin.git",
+        "ref": "main"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL",
+        "products": [
+          "CODEX"
+        ]
+      },
+      "category": "Productivity",
+      "homepage": "https://contracthero.dev/skypies/",
+      "repository": "https://github.com/contract-hero/skypies-plugin",
+      "license": "Apache-2.0",
+      "keywords": [
+        "skypies",
+        "file-transfer",
+        "peer-to-peer",
+        "deep-links"
+      ]
     }
   ]
 }
