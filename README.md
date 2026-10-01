@@ -26,7 +26,16 @@ codex plugin marketplace add contract-hero/plugin-marketplace
 codex plugin add sui-pilot@contract-hero
 ```
 
-Codex reads `.agents/plugins/marketplace.json`. Unlike the Claude catalog, Codex 0.142 indexes plugin entries from local paths inside the marketplace snapshot, so Codex-compatible plugins live under `plugins/<plugin-name>/`.
+Codex reads `.agents/plugins/marketplace.json`. Use a current release with Git
+plugin sources (Sui Pilot's native package is validated with Codex CLI 0.153.4).
+Sui Pilot now installs directly from its canonical repository, including its
+OpenAI manifest, shared skills, and two prebuilt **local stdio MCP servers**.
+Start a new session after installation. A compatible local desktop client can
+use the same marketplace; a browser-only session cannot run the local toolchain.
+
+This marketplace is separate from OpenAI's public plugin directory. Public
+distribution of a local MCP through that directory still requires coordination
+with OpenAI; see the [local MCP guidance](https://developers.openai.com/plugins/guides/submit-claude-plugin).
 
 ## Plugins
 
@@ -50,14 +59,19 @@ plugin-marketplace/
 ├── .claude-plugin/
 │   └── marketplace.json   ← the catalog Claude Code reads
 ├── plugins/
-│   └── sui-pilot/         ← vendored Codex-compatible plugin snapshot
+│   └── sui-pilot/         ← legacy snapshot; no longer used by the current catalog
 ├── README.md              ← this file
 └── LICENSE                ← Apache-2.0
 ```
 
 The Claude catalog references each plugin by GitHub source. Plugin sources are pinned to the default branch (`main`) of each plugin repo today; we may move to tag-pinned references (`ref: vX.Y.Z`) once the plugins adopt a stable release cadence.
 
-The Codex catalog currently exposes `sui-pilot` from `./plugins/sui-pilot`. Keep that directory synced from [`contract-hero/sui-pilot`](https://github.com/contract-hero/sui-pilot) when updating the Codex listing.
+The Codex catalog resolves `sui-pilot` from
+[`contract-hero/sui-pilot`](https://github.com/contract-hero/sui-pilot) on `main`.
+Maintain its native OpenAI package in that repository; do not update the legacy
+snapshot to release a new version. For existing installations, run
+`codex plugin marketplace upgrade contract-hero`, reinstall
+`sui-pilot@contract-hero`, and start a new session.
 
 ## Adding a plugin
 
@@ -65,7 +79,7 @@ To propose a new plugin for this marketplace:
 
 1. Open a PR that appends an entry to `plugins[]` in `.claude-plugin/marketplace.json`. Keep it sorted/grouped sensibly. Required fields per entry are `name` (kebab-case) and `source`; recommended fields are `description`, `homepage`, `repository`, `license`, `category`, and `keywords`.
 2. Make sure the plugin repository contains a valid `.claude-plugin/plugin.json` so Claude Code can resolve its components (commands, skills, agents, hooks, MCP servers).
-3. If the plugin should be installable from Codex, add or update a vendored plugin snapshot under `plugins/<plugin-name>/` and append an entry to `.agents/plugins/marketplace.json` whose source is `{"source": "local", "path": "./plugins/<plugin-name>"}`.
+3. If the plugin should be installable from Codex, include a supported OpenAI manifest in its source repository and append an entry to `.agents/plugins/marketplace.json`. A Git source uses `{"source": "url", "url": "https://github.com/owner/repo.git", "ref": "main"}`. Local sources under `./plugins/<plugin-name>` remain available when vendoring is intentional.
 4. Validate locally before submitting:
    ```bash
    claude plugin validate .
