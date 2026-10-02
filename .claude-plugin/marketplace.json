@@ -166,7 +166,7 @@
     },
     {
       "name": "sui-agent-tank",
-      "description": "Guided evaluation harness — grade a Sui-stack context bundle (a skill folder or a Claude Code plugin) by GitHub URL. /tank clones it, auto-detects the kind, runs a containerized agent through compile/test gates + Move anti-pattern traps + a cross-model judge, and reports.",
+      "description": "How much does your AI actually know about Sui? The Sui mirror of ethevals.com: 100 evals in four pillars (concepts, transactions, building, security). /tank runs the suite on the current agent, vanilla and with a skill or plugin, and builds the result card; the gap between the two cards is the point.",
       "source": {
         "source": "github",
         "repo": "contract-hero/sui-agent-tank"
@@ -178,11 +178,11 @@
       "keywords": [
         "sui",
         "move",
-        "eval",
+        "evals",
+        "benchmark",
         "skills",
         "plugin",
         "agentic",
-        "grading",
         "tank"
       ]
     },
