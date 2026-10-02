@@ -6,17 +6,15 @@
   "plugins": [
     {
       "name": "sui-pilot",
-      "description": "Sui Move development plugin with bundled Sui, Move, Walrus, Seal, DeepBook, and TypeScript SDK docs, Move LSP integration, Sui Prover integration, and specialized Codex skills for review, quality, specs, math safety, and verification.",
+      "description": "Doc-first Sui development with bundled documentation, local Move LSP and Sui Prover MCP servers, toolchain setup, arithmetic guidance, formal specs, verification, and dapp testing.",
       "source": {
-        "source": "local",
-        "path": "./plugins/sui-pilot"
+        "source": "url",
+        "url": "https://github.com/contract-hero/sui-pilot.git",
+        "ref": "main"
       },
       "policy": {
         "installation": "AVAILABLE",
-        "authentication": "ON_INSTALL",
-        "products": [
-          "CODEX"
-        ]
+        "authentication": "ON_INSTALL"
       },
       "category": "Developer Tools",
       "homepage": "https://github.com/contract-hero/sui-pilot",
