@@ -32,27 +32,6 @@
       ]
     },
     {
-      "name": "code-forge",
-      "description": "Multi-agent build system with TDD-as-phase, script-coordinated parallel review, best-of-N implementer, and forge-guard hook discipline.",
-      "source": {
-        "source": "github",
-        "repo": "contract-hero/code-forge"
-      },
-      "homepage": "https://github.com/contract-hero/code-forge",
-      "repository": "https://github.com/contract-hero/code-forge",
-      "license": "MIT",
-      "category": "development",
-      "keywords": [
-        "code-forge",
-        "forge",
-        "multi-agent",
-        "codex",
-        "orchestration",
-        "tdd",
-        "best-of-n"
-      ]
-    },
-    {
       "name": "agentic-community-college",
       "description": "Claude Code learning framework (v0.3 chapter model). A course plugin splits a lesson into chapters defined by tests; the conductor implements each chapter in a seeded workspace, explains it with a self-contained HTML artifact, and closes the lesson with an end-to-end test and a summary page. Ships the MCP server plus the course-engine, course-conductor, course-creator, lesson-creator and chapter-artifact skills. Pair with a course plugin such as acc-claude-sdk.",
       "source": {
