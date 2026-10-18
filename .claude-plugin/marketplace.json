@@ -228,8 +228,29 @@
       ]
     },
     {
+      "name": "hero-forge",
+      "description": "Álvaro Lillo's Claude Code skills toolkit, a hard fork of Matt Pocock's skills: grilling, spec and ticket flows, TDD, an orchestrated review pipeline and more. Every question a skill asks arrives as an AskUserQuestion dialog.",
+      "source": {
+        "source": "github",
+        "repo": "contract-hero/hero-forge"
+      },
+      "homepage": "https://github.com/contract-hero/hero-forge",
+      "repository": "https://github.com/contract-hero/hero-forge",
+      "license": "MIT",
+      "category": "development",
+      "keywords": [
+        "skills",
+        "grilling",
+        "tdd",
+        "code-review",
+        "review-pipeline",
+        "domain-modeling",
+        "AskUserQuestion"
+      ]
+    },
+    {
       "name": "hero-pocock",
-      "description": "Álvaro Lillo's version of Matt Pocock's skills: grilling, spec and ticket flows, TDD, code review, domain modelling and more, tuned for the Contract Hero work-stream. In Claude Code every question a skill asks arrives as an AskUserQuestion dialog.",
+      "description": "Replaced by hero-forge (install hero-forge@contract-hero). Álvaro Lillo's version of Matt Pocock's skills: grilling, spec and ticket flows, TDD, code review, domain modelling and more, tuned for the Contract Hero work-stream. In Claude Code every question a skill asks arrives as an AskUserQuestion dialog.",
       "source": {
         "source": "github",
         "repo": "contract-hero/hero-pocock"
